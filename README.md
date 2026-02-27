@@ -1,37 +1,28 @@
-# Project Title
+# IARG-MRI (C++)
 
-A brief description of your project and its purpose.
+This repository provides a C++ implementation of **IARG-MRI** (`iarg-mri.cpp`) plus the inputs, ground-truth masks, generated masks, and numeric reports used for **Fig.1–Fig.3** and baseline comparisons.
 
-## Features
+## Repository layout
 
-- Feature 1
-- Feature 2
-- Feature 3
+- `iarg-mri.cpp` — main implementation (Windows-oriented C++17).
+- `inputs/` — input MRI images (**images**).
+- `ground-truth mask/` — ground-truth segmentation masks (**images**).
+- `outputs/` — predicted masks produced by the method (**images**).
+- `output/` — numeric results / logs (**text files**), e.g.:
+  - `ketqua.txt` — per-image **Dice** and **IoU** in a Markdown table + an average row.
+  - `report.txt` — list of images that have **no ground truth** available.
+- `fig1 and results/`, `fig2 and results/`, `fig3 and results/` — per-figure assets (**images + numeric results**) used to reproduce the figures.
+- `result_of_baselines/` — outputs of baseline methods (images and/or numeric reports, depending on the baseline).
 
-## Installation
+## Requirements
 
-Instructions on how to install and set up the project.
+- A C++17 compiler.
+- **Windows**: the current code uses `windows.h` + `FindFirstFileA()` for folder traversal and `_mkdir()`.
+- `stb_image.h` and `stb_image_write.h` must be available in the include path (often placed next to `iarg-mri.cpp`).
 
-```bash
-# Installation commands
-```
+## Build
 
-## Usage
+### MSVC (Developer Command Prompt)
 
-Instructions on how to use the project.
-
-```bash
-# Usage commands
-```
-
-## Contributing
-
-Guidelines for contributing to the project.
-
-## License
-
-Information on the project's license.
-
-## Acknowledgments
-
-Credit to those who helped or contributed to the project.
+```bat
+cl /O2 /std:c++17 iarg-mri.cpp
